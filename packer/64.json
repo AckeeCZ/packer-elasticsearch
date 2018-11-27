@@ -1,0 +1,57 @@
+{
+  "variables": {
+    "BUILD_NUMBER": "{{env `BUILD_NUMBER`}}",
+    "GOOGLE_APPLICATION_CREDENTIALS": "{{env `GOOGLE_APPLICATION_CREDENTIALS`}}",
+    "PROJECT_NAME": "{{env `CLOUD_PROJECT`}}",
+    "PROJECT_ZONE": "europe-west1-d",
+    "GCS_BUCKET": "ackee-images"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user `PROJECT_NAME`}}",
+      "source_image": "ubuntu-1604-xenial-v20180306",
+      "ssh_username": "ubuntu",
+      "zone": "{{user `PROJECT_ZONE`}}",
+      "image_name": "es6-gce-discovery-{{user `BUILD_NUMBER`}}",
+      "image_family": "ackee-es-gce-discovery",
+      "preemptible": true
+    }
+  ],
+  "provisioners": [
+    {
+        "type": "shell",
+        "script": "./install.sh"
+    },
+    {
+        "type": "shell",
+        "script": "./stackdriver.sh"
+    },
+    {
+        "type": "file",
+        "source": "./elasticsearch.yml",
+        "destination": "/tmp/"
+    },
+    {
+        "type": "file",
+        "source": "./jvm.options",
+        "destination": "/tmp/"
+    },
+    {
+        "type": "file",
+        "source": "./log4j2.properties",
+        "destination": "/tmp/"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "googlecompute-export",
+      "paths": [
+        "gs:/{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-latest.tar.gz",
+        "gs://{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-{{user `BUILD_NUMBER`}}.tar.gz"
+      ],
+      "keep_input_artifact": false,
+      "only": ["googlecompute"]
+    }
+  ]
+}
