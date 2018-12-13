@@ -6,7 +6,7 @@ apt-get install -y sudo || echo "this is for VM images only"
 sudo apt-get -qq update
 sudo apt-get install -y wget software-properties-common lsb-release perl curl
 
-wget https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz -O /tmp/openjdk-10.0.2_linux-x64_bin.tar.gz
+curl -O https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz
 sudo mkdir -p /usr/lib/jvm
 sudo tar xfvz /tmp/openjdk-10.0.2_linux-x64_bin.tar.gz --directory /usr/lib/jvm
 rm -f /tmp/openjdk-10.0.2_linux-x64_bin.tar.gz
