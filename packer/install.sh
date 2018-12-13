@@ -5,14 +5,6 @@ apt-get install -y sudo || echo "this is for VM images only"
 
 sudo apt-get -qq update
 sudo apt-get install -y wget software-properties-common lsb-release perl curl
-#sudo add-apt-repository ppa:webupd8team/java
-#sudo apt-get -qq update
-#echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-#DEBIAN_FRONTEND=noninteractive  sudo apt-get install -y oracle-java8-installer
-
-# Setting Java 8 as the default (optional)
-#DEBIAN_FRONTEND=noninteractive  sudo apt-get install -y oracle-java8-set-default
-
 
 wget https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz -O /tmp/openjdk-10.0.2_linux-x64_bin.tar.gz
 sudo mkdir -p /usr/lib/jvm
