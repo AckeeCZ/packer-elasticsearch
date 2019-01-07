@@ -47,7 +47,7 @@
     {
       "type": "googlecompute-export",
       "paths": [
-        "gs:/{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-latest.tar.gz",
+        "gs://{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-latest.tar.gz",
         "gs://{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-{{user `BUILD_NUMBER`}}.tar.gz"
       ],
       "keep_input_artifact": false,
