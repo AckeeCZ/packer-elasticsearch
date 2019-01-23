@@ -13,8 +13,8 @@
       "source_image": "ubuntu-1604-xenial-v20180306",
       "ssh_username": "ubuntu",
       "zone": "{{user `PROJECT_ZONE`}}",
-      "image_name": "es6-gce-discovery-{{user `BUILD_NUMBER`}}",
-      "image_family": "ackee-es-gce-discovery",
+      "image_name": "es6-{{user `BUILD_NUMBER`}}",
+      "image_family": "ackee-es",
       "preemptible": true
     }
   ],
@@ -47,8 +47,8 @@
     {
       "type": "googlecompute-export",
       "paths": [
-        "gs://{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-latest.tar.gz",
-        "gs://{{user `GCS_BUCKET`}}/es6-gce-discovery-disk-{{user `BUILD_NUMBER`}}.tar.gz"
+        "gs://{{user `GCS_BUCKET`}}/ackee-es6.4-disk-latest.tar.gz",
+        "gs://{{user `GCS_BUCKET`}}/ackee-es6.4-disk-{{user `BUILD_NUMBER`}}.tar.gz"
       ],
       "keep_input_artifact": false,
       "only": ["googlecompute"]
