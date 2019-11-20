@@ -13,42 +13,27 @@
       "source_image_family": "ubuntu-1804-lts",
       "ssh_username": "ubuntu",
       "zone": "{{user `PROJECT_ZONE`}}",
-      "image_name": "es6-{{user `BUILD_NUMBER`}}",
-      "image_family": "ackee-es",
+      "image_name": "elasticsearch-7-{{user `BUILD_NUMBER`}}",
+      "image_family": "ackee-elasticsearch",
       "preemptible": true
     }
   ],
   "provisioners": [
     {
-        "type": "shell",
-        "script": "./install.sh"
+      "type": "shell",
+      "script": "./install.sh"
     },
     {
-        "type": "shell",
-        "script": "./stackdriver.sh"
-    },
-    {
-        "type": "file",
-        "source": "./elasticsearch.yml",
-        "destination": "/tmp/"
-    },
-    {
-        "type": "file",
-        "source": "./jvm.options",
-        "destination": "/tmp/"
-    },
-    {
-        "type": "file",
-        "source": "./log4j2.properties",
-        "destination": "/tmp/"
+      "type": "shell",
+      "script": "./stackdriver.sh"
     }
   ],
   "post-processors": [
     {
       "type": "googlecompute-export",
       "paths": [
-        "gs://{{user `GCS_BUCKET`}}/ackee-es6.4-disk-latest.tar.gz",
-        "gs://{{user `GCS_BUCKET`}}/ackee-es6.4-disk-{{user `BUILD_NUMBER`}}.tar.gz"
+        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-latest.tar.gz",
+        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-{{user `BUILD_NUMBER`}}.tar.gz"
       ],
       "keep_input_artifact": false,
       "only": ["googlecompute"]
