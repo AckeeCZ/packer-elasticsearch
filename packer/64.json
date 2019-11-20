@@ -20,27 +20,27 @@
   ],
   "provisioners": [
     {
-        "type": "shell",
-        "script": "./install.sh"
+      "type": "shell",
+      "script": "./install.sh"
     },
     {
-        "type": "shell",
-        "script": "./stackdriver.sh"
+      "type": "shell",
+      "script": "./stackdriver.sh"
     },
     {
-        "type": "file",
-        "source": "./elasticsearch.yml",
-        "destination": "/tmp/"
+      "type": "file",
+      "source": "./elasticsearch.yml",
+      "destination": "/tmp/"
     },
     {
-        "type": "file",
-        "source": "./jvm.options",
-        "destination": "/tmp/"
+      "type": "file",
+      "source": "./jvm.options",
+      "destination": "/tmp/"
     },
     {
-        "type": "file",
-        "source": "./log4j2.properties",
-        "destination": "/tmp/"
+      "type": "file",
+      "source": "./log4j2.properties",
+      "destination": "/tmp/"
     }
   ],
   "post-processors": [
