@@ -18,5 +18,3 @@ LimitMEMLOCK=infinity" | sudo tee /etc/systemd/system/elasticsearch.service.d/ov
 sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install -b discovery-gce
 sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install -b repository-gcs
 sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu
-
-sudo rm -Rf /usr/share/elasticsearch/modules/x-pack*
