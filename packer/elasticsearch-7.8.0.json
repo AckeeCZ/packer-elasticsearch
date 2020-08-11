@@ -23,7 +23,7 @@
       "type": "shell",
       "script": "./install.sh",
       "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    }
+    },
     {
       "type": "shell",
       "script": "./stackdriver.sh",
