@@ -21,11 +21,13 @@
   "provisioners": [
     {
       "type": "shell",
-      "script": "./install.sh"
-    },
+      "script": "./install.sh",
+      "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    }
     {
       "type": "shell",
-      "script": "./stackdriver.sh"
+      "script": "./stackdriver.sh",
+      "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     }
   ],
   "post-processors": [
