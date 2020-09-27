@@ -4,7 +4,9 @@
     "GOOGLE_APPLICATION_CREDENTIALS": "{{env `GOOGLE_APPLICATION_CREDENTIALS`}}",
     "PROJECT_NAME": "{{env `CLOUD_PROJECT`}}",
     "PROJECT_ZONE": "europe-west1-d",
-    "GCS_BUCKET": "ackee-images"
+    "GCS_BUCKET": "ackee-images",
+    "GITLAB_VERSION": "7.9.2"
+
   },
   "builders": [
     {
