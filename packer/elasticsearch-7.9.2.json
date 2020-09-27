@@ -5,7 +5,7 @@
     "PROJECT_NAME": "{{env `CLOUD_PROJECT`}}",
     "PROJECT_ZONE": "europe-west1-d",
     "GCS_BUCKET": "ackee-images",
-    "GITLAB_VERSION": "7.9.2"
+    "ES_VERSION": "7.9.2"
 
   },
   "builders": [
