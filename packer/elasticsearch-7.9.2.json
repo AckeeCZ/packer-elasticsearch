@@ -24,6 +24,9 @@
     {
       "type": "shell",
       "script": "./install.sh",
+      "environment_vars": [
+        "ES_VERSION={{user `ES_VERSION`}}"
+      ],
       "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     },
     {
