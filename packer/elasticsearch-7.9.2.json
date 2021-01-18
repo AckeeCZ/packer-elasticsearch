@@ -22,6 +22,11 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "cleanup.sh",
+      "destination": "/tmp/cleanup.sh"
+    },
+    {
       "type": "shell",
       "script": "./install.sh",
       "environment_vars": [
@@ -36,12 +41,7 @@
     },
     {
       "type": "shell",
-      "inline": [ "apt-get clean" ]
-    },
-    {
-      "type": "file",
-      "source": "cleanup.sh",
-      "destination": "/etc/cron.daily/cleanup.sh"
+      "inline": [ "sudo sh -c 'apt-get clean'" ]
     }
   ],
   "post-processors": [

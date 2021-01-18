@@ -27,3 +27,5 @@ LimitMEMLOCK=infinity" > /etc/systemd/system/elasticsearch.service.d/override.co
 /usr/share/elasticsearch/bin/elasticsearch-plugin install -b discovery-gce
 /usr/share/elasticsearch/bin/elasticsearch-plugin install -b repository-gcs
 /usr/share/elasticsearch/bin/elasticsearch-plugin install -b analysis-icu
+
+mv /tmp/cleanup.sh /etc/cron.daily/
