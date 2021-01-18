@@ -33,6 +33,15 @@
       "type": "shell",
       "script": "./stackdriver.sh",
       "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    },
+    {
+      "type": "shell",
+      "inline": [ "apt-get clean" ]
+    },
+    {
+      "type": "file",
+      "source": "cleanup.sh",
+      "destination": "/etc/cron.daily/cleanup.sh"
     }
   ],
   "post-processors": [
