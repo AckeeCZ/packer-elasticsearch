@@ -4,6 +4,13 @@ set -ue -o pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Wait for cloud-init to deply local mirror in /etc/apt/sources.list
+# https://github.com/hashicorp/packer/issues/41#issuecomment-21288589
+until grep -q "gce" /etc/apt/sources.list; do
+  echo "searching for gce string in apt sources"
+  sleep 5
+done
+
 apt-get update
 apt-get install -y --no-install-recommends nmap htop pigz ncdu apt-transport-https
 apt-get -y dist-upgrade
