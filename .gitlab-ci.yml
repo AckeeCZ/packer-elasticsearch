@@ -1,0 +1,4 @@
+include:
+  - project: Ackee/gitlab-ci-templates
+    ref: packer/v1.0.0
+    file: packer/pipeline.yml

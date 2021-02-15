@@ -1,12 +1,10 @@
 {
   "variables": {
-    "BUILD_NUMBER": "{{env `BUILD_NUMBER`}}",
     "GOOGLE_APPLICATION_CREDENTIALS": "{{env `GOOGLE_APPLICATION_CREDENTIALS`}}",
     "PROJECT_NAME": "{{env `CLOUD_PROJECT`}}",
     "PROJECT_ZONE": "europe-west1-d",
     "GCS_BUCKET": "ackee-images",
-    "ES_VERSION": "7.9.2"
-
+    "ES_VERSION": "{{env `ES_VERSION`}}"
   },
   "builders": [
     {
@@ -15,7 +13,7 @@
       "source_image_family": "ubuntu-1804-lts",
       "ssh_username": "ubuntu",
       "zone": "{{user `PROJECT_ZONE`}}",
-      "image_name": "elasticsearch-7-{{user `BUILD_NUMBER`}}",
+      "image_name": "elasticsearch-7-{{timestamp}}",
       "image_family": "ackee-elasticsearch",
       "preemptible": true
     }
@@ -30,7 +28,7 @@
       "type": "shell",
       "script": "./install.sh",
       "environment_vars": [
-        "ES_VERSION={{user `ES_VERSION`}}"
+        "ES_VERSION={{env `ES_VERSION`}}"
       ],
       "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     },
@@ -49,7 +47,7 @@
       "type": "googlecompute-export",
       "paths": [
         "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-latest.tar.gz",
-        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-{{user `BUILD_NUMBER`}}.tar.gz"
+        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-{{timestamp}}.tar.gz"
       ],
       "keep_input_artifact": false,
       "only": ["googlecompute"]
