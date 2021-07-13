@@ -12,7 +12,7 @@ until grep -q "gce" /etc/apt/sources.list; do
 done
 
 apt-get update
-apt-get install -y --no-install-recommends nmap htop pigz ncdu apt-transport-https
+apt-get install -y --no-install-recommends nmap htop pigz ncdu apt-transport-https sysstat
 apt-get -y dist-upgrade
 
 wget -q https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-$ES_VERSION-amd64.deb
