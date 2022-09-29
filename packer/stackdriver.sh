@@ -2,34 +2,33 @@
 
 export DEBIAN_FRONTEND=noninteractive
 
-echo "deb https://packages.cloud.google.com/apt google-cloud-ops-agent-$(lsb_release -sc)-all main" > /etc/apt/sources.list.d/google-cloud-op-agent.list
+echo "deb https://packages.cloud.google.com/apt google-cloud-ops-agent-$(lsb_release -sc)-all main" > /etc/apt/sources.list.d/google-cloud-ops-agent.list
 curl --connect-timeout 5 -s -f "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | apt-key add -
 apt-get -qq update
-apt-get -y -q install google-cloud-ops-agent=2.7.0~ubuntu18.04
+apt-get -y -q install google-cloud-ops-agent=2.21.0~ubuntu18.04
 
-echo <<EOF
+sudo tee /etc/google-cloud-ops-agent/config.yaml > /dev/null << EOF
 logging:
   receivers:
-    elasticsearch:
-      type: files
-
-      include_paths: [/var/log/elasticsearch/*.log]
-      exclude_paths: [/var/log/elasticsearch/gc.log]
-  processors:
-    elasticsearch:
-      type: parse_regex
-      field:       message
-      regex:       "^(\[?<time>[^\]]*)\]\[(?<severity>[^\]]*)\](?<msg>.*)$"
-      time_key:    time
-      time_format: "%Y-%m-%dT%H:%M:%S,%SSS"
+    elasticsearch_json:
+      type: elasticsearch_json
+    elasticsearch_gc:
+      type: elasticsearch_gc
   service:
     pipelines:
-      default_pipeline:
+      elasticsearch:
         receivers:
-          - syslog
-          - elasticsearch
-        processors:
+          - elasticsearch_json
+          - elasticsearch_gc
+metrics:
+  receivers:
+    elasticsearch:
+      type: elasticsearch
+  service:
+    pipelines:
+      elasticsearch:
+        receivers:
           - elasticsearch
 EOF
->> /etc/google-cloud-ops-agent/config.yaml
+
 rm -Rf /var/lib/apt/lists/*
