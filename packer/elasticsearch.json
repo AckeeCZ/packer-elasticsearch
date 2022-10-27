@@ -10,10 +10,10 @@
     {
       "type": "googlecompute",
       "project_id": "{{user `PROJECT_NAME`}}",
-      "source_image_family": "ubuntu-1804-lts",
+      "source_image_family": "ubuntu-2004-lts",
       "ssh_username": "ubuntu",
       "zone": "{{user `PROJECT_ZONE`}}",
-      "image_name": "elasticsearch-8-{{timestamp}}",
+      "image_name": "elasticsearch-7-{{timestamp}}",
       "image_family": "ackee-elasticsearch",
       "preemptible": true
     }
@@ -46,8 +46,8 @@
     {
       "type": "googlecompute-export",
       "paths": [
-        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-8-disk-latest.tar.gz",
-        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-8-disk-{{timestamp}}.tar.gz"
+        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-latest.tar.gz",
+        "gs://{{user `GCS_BUCKET`}}/ackee-elasticsearch-7-disk-{{timestamp}}.tar.gz"
       ],
       "keep_input_artifact": false,
       "only": ["googlecompute"]
