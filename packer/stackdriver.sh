@@ -5,7 +5,7 @@ export DEBIAN_FRONTEND=noninteractive
 echo "deb https://packages.cloud.google.com/apt google-cloud-ops-agent-$(lsb_release -sc)-all main" > /etc/apt/sources.list.d/google-cloud-ops-agent.list
 curl --connect-timeout 5 -s -f "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | apt-key add -
 apt-get -qq update
-apt-get -y -q install google-cloud-ops-agent=2.21.0~ubuntu18.04
+apt-get -y -q install google-cloud-ops-agent=2.21.0~ubuntu20.04
 
 sudo tee /etc/google-cloud-ops-agent/config.yaml > /dev/null << EOF
 logging:
